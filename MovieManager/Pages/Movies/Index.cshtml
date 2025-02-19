@@ -1,0 +1,163 @@
+﻿@page
+@model MovieManager.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="text-center">
+	<h1 class="display-4">Movies</h1>
+</div>
+
+<div id="header">
+    <div class="search-container">
+		<form>
+			<input type="text" placeholder="Search..." asp-for="SearchString" required />
+			<input type="submit" value="Search" />
+		</form>
+	</div>
+</div>
+
+<hr />
+
+<div class="body">
+	<div class="container">
+		@foreach (var item in Model.Movie)
+		{
+            <a asp-page ="./Details" asp-route-id="@item.Id">
+				<div class="movie-card">
+					<img src="images/poster_placeholder.png" alt="Poster" class="movie-poster">
+                    <div class="movie-info">
+						<h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+						<p>Release Date: @Html.DisplayFor(modelItem => item.ReleaseDate)</p>
+                    </div>
+					
+				</div>
+            </a>
+			
+		}
+	</div>
+</div>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin")
+{
+    <div class="footer">
+        <p><a asp-page="Create">Create New</a></p>
+    </div>
+}
+
+
+
+<style>
+    .search-container {
+        background-color: #fff;
+        border-radius: 25px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        max-width: fit-content;
+        margin-left: 65%;
+    }
+
+    .search-container input[type="text"] {
+        border: none;
+        outline: none;
+        padding: 10px;
+        border-radius: 25px;
+        width: 300px;
+        font-size: 16px;
+    }
+
+        .search-container input[type="submit"] {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+        .search-container input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    
+}
+
+.body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.body .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 5px;
+}
+.container a{
+    text-decoration: none;
+}
+
+.movie-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 5px;
+    width: 250px;
+    text-align: left;
+   
+}
+
+.movie-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.movie-info {
+		overflow-x: hidden;
+
+}
+
+.movie-info h2 {
+    color: #666;
+    font-size: 1.5em;
+    font: bold;
+    margin: 10px 0;
+    margin-left: 5px;
+    max-width: fit-content;
+}
+
+.movie-info p {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 5px;
+}
+
+.footer {
+    text-align: center;
+}
+</style>
