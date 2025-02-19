@@ -4,6 +4,7 @@
 Поиск фильмов происходит по названию. Осуществлена авторизация с использованием cookies.
 Есть два вида доступа: *admin* и *user*.
 
-# ДАННЫЕ ДЛЯ АВТОРИЗАЦИИ:
-*username* | admin    | user     |
-*password* | password | password |
+# Данные для авторизации:
+username | *admin*    | *user*     |
+
+password | *password* | *password* |
