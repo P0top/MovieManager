@@ -12,6 +12,7 @@ namespace MovieManager.Data
         public MovieManagerContext (DbContextOptions<MovieManagerContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<MovieManager.Models.Movie> Movie { get; set; } = default!;
